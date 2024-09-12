@@ -1,13 +1,13 @@
-// Get form elements
+
 const form = document.getElementById('resumeForm') as HTMLFormElement;
 const resumeOutput = document.getElementById('resumeOutput') as HTMLDivElement;
 const editButton = document.getElementById('editButton') as HTMLButtonElement;
 
-// Event listener for form submission
+
 form.addEventListener('submit', (event: Event) => {
     event.preventDefault();
 
-    // Get form values
+
     const nameElement = document.getElementById('name') as HTMLInputElement;
     const emailElement = document.getElementById('email') as HTMLInputElement;
     const phoneElement = document.getElementById('phone') as HTMLInputElement;
@@ -16,13 +16,12 @@ form.addEventListener('submit', (event: Event) => {
     const skillElement = document.getElementById('skill') as HTMLInputElement;
     const profilePictureElement = document.getElementById('profile-picture') as HTMLInputElement;
 
-    // Check if elements are found
+
     if (!nameElement || !emailElement || !phoneElement || !educationElement || !experienceElement || !skillElement || !profilePictureElement) {
         console.error('One or more form elements not found.');
         return;
     }
 
-    // Get values with default empty string for undefined
     const name = nameElement.value || 'Not provided';
     const email = emailElement.value || 'Not provided';
     const phone = phoneElement.value || 'Not provided';
@@ -31,7 +30,7 @@ form.addEventListener('submit', (event: Event) => {
     const skills = skillElement.value || 'Not provided';
     const profilePicture = profilePictureElement.files?.[0];
 
-    // Debug output
+
     console.log('Form Values:', {
         name,
         email,
@@ -42,7 +41,6 @@ form.addEventListener('submit', (event: Event) => {
         profilePicture
     });
 
-    // Create resume content
     let resumeContent = `
         <h2>Resume</h2>
         <h3>Personal Information</h3>
@@ -57,7 +55,6 @@ form.addEventListener('submit', (event: Event) => {
         <p>${skills}</p>
     `;
 
-    // Handle profile picture
     if (profilePicture) {
         const reader = new FileReader();
         reader.onload = () => {
@@ -85,15 +82,15 @@ form.addEventListener('submit', (event: Event) => {
         resumeOutput.innerHTML = resumeContent;
     }
 
-    // Show the output and hide the form
+
     resumeOutput.style.display = 'block';
     form.style.display = 'none';
     editButton.style.display = 'block';
 });
 
-// Event listener for edit button
+
 editButton.addEventListener('click', () => {
-    // Show the form and hide the output
+
     resumeOutput.style.display = 'none';
     form.style.display = 'block';
     editButton.style.display = 'none';
