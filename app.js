@@ -1,12 +1,9 @@
-// Get form elements
 var form = document.getElementById('resumeForm');
 var resumeOutput = document.getElementById('resumeOutput');
 var editButton = document.getElementById('editButton');
-// Event listener for form submission
 form.addEventListener('submit', function (event) {
     var _a;
     event.preventDefault();
-    // Get form values
     var nameElement = document.getElementById('name');
     var emailElement = document.getElementById('email');
     var phoneElement = document.getElementById('phone');
@@ -14,12 +11,10 @@ form.addEventListener('submit', function (event) {
     var experienceElement = document.getElementById('experienceTextarea');
     var skillElement = document.getElementById('skill');
     var profilePictureElement = document.getElementById('profile-picture');
-    // Check if elements are found
     if (!nameElement || !emailElement || !phoneElement || !educationElement || !experienceElement || !skillElement || !profilePictureElement) {
         console.error('One or more form elements not found.');
         return;
     }
-    // Get values with default empty string for undefined
     var name = nameElement.value || 'Not provided';
     var email = emailElement.value || 'Not provided';
     var phone = phoneElement.value || 'Not provided';
@@ -27,7 +22,6 @@ form.addEventListener('submit', function (event) {
     var experience = experienceElement.value || 'Not provided';
     var skills = skillElement.value || 'Not provided';
     var profilePicture = (_a = profilePictureElement.files) === null || _a === void 0 ? void 0 : _a[0];
-    // Debug output
     console.log('Form Values:', {
         name: name,
         email: email,
@@ -37,9 +31,7 @@ form.addEventListener('submit', function (event) {
         skills: skills,
         profilePicture: profilePicture
     });
-    // Create resume content
     var resumeContent = "\n        <h2>Resume</h2>\n        <h3>Personal Information</h3>\n        <p><strong>Name:</strong> ".concat(name, "</p>\n        <p><strong>Email:</strong> ").concat(email, "</p>\n        <p><strong>Phone:</strong> ").concat(phone, "</p>\n        <h3>Education</h3>\n        <p>").concat(education, "</p>\n        <h3>Experience</h3>\n        <p>").concat(experience, "</p>\n        <h3>Skills</h3>\n        <p>").concat(skills, "</p>\n    ");
-    // Handle profile picture
     if (profilePicture) {
         var reader_1 = new FileReader();
         reader_1.onload = function () {
@@ -54,14 +46,11 @@ form.addEventListener('submit', function (event) {
     else {
         resumeOutput.innerHTML = resumeContent;
     }
-    // Show the output and hide the form
     resumeOutput.style.display = 'block';
     form.style.display = 'none';
     editButton.style.display = 'block';
 });
-// Event listener for edit button
 editButton.addEventListener('click', function () {
-    // Show the form and hide the output
     resumeOutput.style.display = 'none';
     form.style.display = 'block';
     editButton.style.display = 'none';
